@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "YouTube or Social Media project ideas",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "status": { "enum": ["idea", "planning", "production", "completed"] },
+        "platform": { "enum": ["youtube", "tiktok", "instagram", "other"] },
+        "createdBy": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "status", "platform", "createdBy"]
+    },
+    "Task": {
+      "title": "Task",
+      "description": "Collaborative task items",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "projectId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "assignedBy": { "type": "string" },
+        "assignedTo": { "type": "string" },
+        "status": { "enum": ["todo", "doing", "done"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "assignedBy", "assignedTo", "status"]
+    }
+  },
+  "firestore": {
+    "projects": {
+      "schema": "Project",
+      "description": "Collection of content projects"
+    },
+    "tasks": {
+      "schema": "Task",
+      "description": "Collection of shared tasks"
+    }
+  }
+}
